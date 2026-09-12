@@ -45,7 +45,7 @@ A dataset of 5,000 unlabeled observations was collected from the `MiniGrid-Empty
 ---
 ### 4.2 Self-Supervised Learning
 
-A fully connected autoencoder was trained on the unlabeled MiniGrid observations using mean squared reconstruction error. The encoder maps each `7 × 7 × 3` observation to a 64-dimensional latent vector, while the decoder attempts to reconstruct the original input.
+A convolutional autoencoder was trained on the unlabeled MiniGrid observations using mean squared reconstruction error. Each 7 × 7 × 3 observation was processed using channel-specific normalization to account for MiniGrid's categorical object, colour, and state channels. The encoder compresses each observation into a 16-dimensional latent representation, while the decoder attempts to reconstruct the original observation. After training, the encoder weights were frozen and the learned representations were used as input to the PPO agent.
 
 ![Original and reconstructed MiniGrid observations](images/03_autoencoder_reconstructions.png)
 
